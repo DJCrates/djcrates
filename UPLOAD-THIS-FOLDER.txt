@@ -1,0 +1,1 @@
+Unzip this package. Upload index.html, styles.css, script.js, assets and collections directly into the main djcrates repository. Do not upload the outer djcrates-version-4 folder.

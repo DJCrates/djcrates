@@ -1,0 +1,1 @@
+After unzipping, upload index.html, style.css, script.js and the assets folder directly into the main djcrates repository. Do not upload the ZIP or the outer folder. The old nested folder may remain for now.

@@ -1,271 +1,996 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DJ Crates | Browse & Buy</title>
-  <meta name="description" content="Browse downloadable DJ music collections and buy securely through Payhip.">
-  <style>
-    :root{
-      --bg:#070707;
-      --panel:#111;
-      --text:#f5f5f2;
-      --muted:#aaa;
-      --green:#93ed00;
-      --line:#2a2a2a;
-      --max:980px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:Arial,Helvetica,sans-serif;
-      line-height:1.5;
-    }
-    .wrap{
-      width:min(calc(100% - 28px),var(--max));
-      margin:auto;
-    }
-    header{
-      border-bottom:1px solid var(--line);
-      padding:34px 0 28px;
-    }
-    h1{
-      margin:0;
-      font-size:clamp(2.6rem,7vw,5.2rem);
-      line-height:.9;
-      letter-spacing:-.055em;
-    }
-    .strap{
-      margin:18px 0 0;
-      max-width:650px;
-      color:#c7c7c7;
-      font-size:1.08rem;
-    }
-    .notice{
-      margin-top:24px;
-      padding:15px 18px;
-      background:var(--panel);
-      border-left:4px solid var(--green);
-      color:#d7d7d7;
-    }
-    nav{
-      position:sticky;
-      top:0;
-      z-index:10;
-      background:rgba(7,7,7,.95);
-      border-bottom:1px solid var(--line);
-    }
-    .nav{
-      display:flex;
-      gap:16px;
-      overflow-x:auto;
-      padding:13px 0;
-      white-space:nowrap;
-    }
-    .nav a{
-      color:var(--text);
-      text-decoration:none;
-      font-weight:800;
-      font-size:.9rem;
-    }
-    .nav a:hover{color:var(--green)}
-    section{
-      padding:48px 0;
-      border-bottom:1px solid var(--line);
-    }
-    h2{
-      margin:0 0 20px;
-      font-size:clamp(2rem,5vw,3.4rem);
-      line-height:1;
-      letter-spacing:-.04em;
-    }
-    .list{
-      border-top:1px solid var(--line);
-    }
-    .item{
-      display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:18px;
-      align-items:center;
-      padding:17px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .item h3{
-      margin:0 0 3px;
-      font-size:1.05rem;
-    }
-    .item p{
-      margin:0;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-    .buy{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:108px;
-      min-height:42px;
-      padding:0 16px;
-      background:var(--green);
-      color:#000;
-      text-decoration:none;
-      font-weight:900;
-    }
-    .buy:hover{filter:brightness(1.08)}
-    .contact{
-      background:var(--panel);
-    }
-    .contact-box{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:22px;
-      align-items:center;
-    }
-    .contact p{
-      margin:8px 0 0;
-      color:#c7c7c7;
-    }
-    footer{
-      padding:30px 0 44px;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-    @media(max-width:620px){
-      .item{
-        grid-template-columns:1fr;
-      }
-      .buy{
-        width:100%;
-      }
-      .contact-box{
-        grid-template-columns:1fr;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DJ Crates | Download Music Collections</title>
+<meta name="description" content="Browse 139 downloadable music collections with prices and secure Payhip checkout.">
+<style>
+:root{--bg:#070707;--panel:#101010;--text:#f7f7f3;--muted:#aaa;--green:#93ed00;--line:#292929;--max:1100px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+.wrap{width:min(calc(100% - 30px),var(--max));margin:auto}
+header{padding:48px 0 34px;border-bottom:1px solid var(--line)}h1{margin:0;font-size:clamp(3.2rem,8vw,6.4rem);line-height:.86;letter-spacing:-.06em}
+.intro{max-width:720px;margin:22px 0 0;color:#ccc;font-size:1.1rem}.proof{margin-top:22px;padding:14px 16px;background:var(--panel);border-left:4px solid var(--green);color:#ddd}
+.tools{position:sticky;top:0;z-index:20;background:rgba(7,7,7,.96);border-bottom:1px solid var(--line)}.tool-row{padding:12px 0;display:grid;grid-template-columns:minmax(220px,1fr);gap:10px}
+.search{width:100%;height:46px;padding:0 15px;background:#fff;color:#111;border:0;font-size:1rem}
+.genre-nav{display:flex;gap:15px;overflow-x:auto;padding:0 0 13px;white-space:nowrap}.genre-nav a{color:#ddd;text-decoration:none;font-size:.83rem;font-weight:800}.genre-nav a:hover{color:var(--green)}
+main{padding:18px 0 60px}.category{padding:45px 0 10px;border-bottom:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:15px}
+h2{margin:0;font-size:clamp(2rem,5vw,3.7rem);line-height:.95;letter-spacing:-.04em}.section-head span{color:var(--muted);font-size:.86rem}
+.product-list{border-top:1px solid var(--line)}.product{display:grid;grid-template-columns:minmax(0,1fr) 100px 118px;gap:18px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.product h3{margin:0;font-size:1rem;font-weight:800}.price{font-size:1.05rem;font-weight:900;text-align:right}.buy{min-height:42px;display:inline-flex;align-items:center;justify-content:center;padding:0 14px;background:var(--green);color:#000;text-decoration:none;font-weight:900;font-size:.86rem}
+.buy:hover{filter:brightness(1.08)}.product.hidden{display:none}.empty{display:none;padding:40px 0;color:var(--muted)}
+footer{padding:34px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}footer a{color:var(--text)}
+@media(max-width:620px){header{padding-top:35px}.product{grid-template-columns:minmax(0,1fr) 76px;gap:10px}.buy{grid-column:1/-1;width:100%}.price{text-align:right}}
+</style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <h1>DJ CRATES</h1>
-    <p class="strap">Browse downloadable music collections and buy securely through Payhip.</p>
-    <div class="notice">Built from working DJs' music libraries. Artist &amp; title tagged. Versions vary.</div>
+    <p class="intro">139 downloadable music collections. Browse by category, check the price and buy securely through Payhip.</p>
+    <div class="proof">Built from working DJs' music libraries. Artist &amp; title tagged. Versions vary.</div>
   </div>
 </header>
-
-<nav>
-  <div class="wrap nav">
-    <a href="#house">House</a>
-    <a href="#techno">Techno</a>
-    <a href="#trance">Trance</a>
-    <a href="#hardcore">Hardcore</a>
-    <a href="#dance">Dance &amp; Club</a>
-    <a href="#urban">Hip Hop &amp; R&amp;B</a>
-    <a href="#party">Party Music</a>
+<div class="tools">
+  <div class="wrap">
+    <div class="tool-row"><input id="search" class="search" type="search" placeholder="Search collections…" aria-label="Search collections"></div>
+    <nav class="genre-nav"><a href="#house-techno">House &amp; Techno</a><a href="#trance">Trance</a><a href="#hard-dance">Hard Dance</a><a href="#edm-bass-dnb">EDM, Bass &amp; DnB</a><a href="#hip-hop-r-b-reggae">Hip Hop, R&amp;B &amp; Reggae</a><a href="#soul-funk-disco">Soul, Funk &amp; Disco</a><a href="#decades-rock-club">Decades, Rock &amp; Club</a><a href="#party-occasion">Party &amp; Occasion</a><a href="#charts-current">Charts &amp; Current</a><a href="#services-megacrates">Services &amp; Megacrates</a><a href="#free-resources">Free Resources</a><a href="#other-collections">Other Collections</a></nav>
   </div>
-</nav>
-
-<main>
-  <section id="house">
-    <div class="wrap">
-      <h2>House</h2>
-      <div class="list">
-        <div class="item"><div><h3>House Music Classics</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Happy House</h3><p>1,800 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Deep House</h3><p>1,800+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Jackin' House Vol. 1</h3><p>Download collection</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Jackin' House Vol. 2</h3><p>Download collection</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Melodic House</h3><p>1,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Progressive House</h3><p>750 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Tropical House</h3><p>1,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>R&amp;B House</h3><p>1,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="techno">
-    <div class="wrap">
-      <h2>Techno</h2>
-      <div class="list">
-        <div class="item"><div><h3>Peak Time Techno</h3><p>1,200 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Melodic Techno</h3><p>1,800+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Acid Techno</h3><p>1,500+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Hard Techno</h3><p>2,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="trance">
-    <div class="wrap">
-      <h2>Trance</h2>
-      <div class="list">
-        <div class="item"><div><h3>Trance</h3><p>1,200 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Progressive Trance</h3><p>630+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="hardcore">
-    <div class="wrap">
-      <h2>Hardcore</h2>
-      <div class="list">
-        <div class="item"><div><h3>Hardcore &amp; Rave</h3><p>2,400 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Gabber / Hardcore</h3><p>3,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Frenchcore</h3><p>1,500 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Hard House</h3><p>2,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="dance">
-    <div class="wrap">
-      <h2>Dance &amp; Club</h2>
-      <div class="list">
-        <div class="item"><div><h3>90s Club Classics</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>80s Dance</h3><p>500 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Drum &amp; Bass</h3><p>2,200 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>Jungle</h3><p>630 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="urban">
-    <div class="wrap">
-      <h2>Hip Hop &amp; R&amp;B</h2>
-      <div class="list">
-        <div class="item"><div><h3>Hip Hop DJ Crate</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>R&amp;B DJ Crate</h3><p>2,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="party">
-    <div class="wrap">
-      <h2>Party Music</h2>
-      <div class="list">
-        <div class="item"><div><h3>Open Format / Wedding</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>90s Party</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
-        <div class="item"><div><h3>40th Birthday Party</h3><p>Coming soon</p></div><a class="buy" href="mailto:diane@djcrates.store?subject=40th%20Birthday%20Party%20Music">Enquire</a></div>
-        <div class="item"><div><h3>Wedding Floorfillers</h3><p>Coming soon</p></div><a class="buy" href="mailto:diane@djcrates.store?subject=Wedding%20Floorfillers">Enquire</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="contact">
-    <div class="wrap contact-box">
-      <div>
-        <h2>Need something specific?</h2>
-        <p>Ask about custom collections, downloads or a possible USB service.</p>
-      </div>
-      <a class="buy" href="mailto:diane@djcrates.store?subject=DJ%20Crates%20Enquiry">Contact</a>
-    </div>
-  </section>
+</div>
+<main class="wrap">
+  <section id="house-techno" class="category">
+  <div class="section-head">
+    <h2>House &amp; Techno</h2>
+    <span>35 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="1000 melodic house tracks deep &amp; atmospheric d... house &amp; techno">
+  <div class="product-copy">
+    <h3>1000 Melodic House Tracks Deep &amp; Atmospheric D...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1000 r&amp;b house tracks vocal house dance music ... house &amp; techno">
+  <div class="product-copy">
+    <h3>1000 R&amp;B House Tracks Vocal House Dance Music ...</h3>
+  </div>
+  <div class="price">£28.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1000 tropical house tracks summer chill beach ... house &amp; techno">
+  <div class="product-copy">
+    <h3>1000 Tropical House Tracks Summer Chill Beach ...</h3>
+  </div>
+  <div class="price">£28.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1150 tech house tracks groove-driven house mus... house &amp; techno">
+  <div class="product-copy">
+    <h3>1150 Tech House Tracks Groove-Driven House Mus...</h3>
+  </div>
+  <div class="price">£28.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1200 chilled house tracks relaxing deep &amp; loun... house &amp; techno">
+  <div class="product-copy">
+    <h3>1200 Chilled House Tracks Relaxing Deep &amp; Loun...</h3>
+  </div>
+  <div class="price">£32.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1200 peak time techno tracks high energy peak-... house &amp; techno">
+  <div class="product-copy">
+    <h3>1200 PEAK TIME TECHNO TRACKS HIGH ENERGY PEAK-...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1250 house classics tracks ibiza, old school &amp;... house &amp; techno">
+  <div class="product-copy">
+    <h3>1250 House Classics Tracks Ibiza, Old School &amp;...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1300 techno tracks driving &amp; peak-time electro... house &amp; techno">
+  <div class="product-copy">
+    <h3>1300 Techno Tracks Driving &amp; Peak-Time Electro...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1500 acid techno tracks raw underground techno... house &amp; techno">
+  <div class="product-copy">
+    <h3>1500 Acid Techno Tracks Raw Underground Techno...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1800 happy house tracks feel-good piano house ... house &amp; techno">
+  <div class="product-copy">
+    <h3>1800 Happy House Tracks Feel-Good Piano House ...</h3>
+  </div>
+  <div class="price">£32.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1800 melodic techno tracks deep, hypnotic &amp; at... house &amp; techno">
+  <div class="product-copy">
+    <h3>1800 Melodic Techno Tracks Deep, Hypnotic &amp; At...</h3>
+  </div>
+  <div class="price">£36.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000 house music playlist classic to modern dj... house &amp; techno">
+  <div class="product-copy">
+    <h3>2000 House Music Playlist Classic to Modern DJ...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000+ house music classics &amp; anthems house &amp; techno">
+  <div class="product-copy">
+    <h3>2000+ House Music Classics &amp; Anthems</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2600 bass house tracks heavy bass dance music ... house &amp; techno">
+  <div class="product-copy">
+    <h3>2600 Bass House Tracks Heavy Bass Dance Music ...</h3>
+  </div>
+  <div class="price">£39.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2900 house tracks tech house, progressive &amp; me... house &amp; techno">
+  <div class="product-copy">
+    <h3>2900 House Tracks Tech House, Progressive &amp; Me...</h3>
+  </div>
+  <div class="price">£49.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="580 afro house tracks tribal, soulful &amp; deep h... house &amp; techno">
+  <div class="product-copy">
+    <h3>580 Afro House Tracks Tribal, Soulful &amp; Deep H...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="6000 techno tracks underground, hard &amp; acid te... house &amp; techno">
+  <div class="product-copy">
+    <h3>6000 Techno Tracks Underground, Hard &amp; Acid Te...</h3>
+  </div>
+  <div class="price">£99.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="750 progressive house tracks melodic &amp; deep ho... house &amp; techno">
+  <div class="product-copy">
+    <h3>750 Progressive House Tracks Melodic &amp; Deep Ho...</h3>
+  </div>
+  <div class="price">£26.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="750 tech house tracks groove, peak-time &amp; club... house &amp; techno">
+  <div class="product-copy">
+    <h3>750 Tech House Tracks Groove, Peak-Time &amp; Club...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="90s house music playlist house &amp; techno">
+  <div class="product-copy">
+    <h3>90s House Music Playlist</h3>
+  </div>
+  <div class="price">£11.50</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="chill house set house &amp; techno">
+  <div class="product-copy">
+    <h3>Chill House Set</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="deep house collection house &amp; techno">
+  <div class="product-copy">
+    <h3>Deep House Collection</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="deep tech minimal crate house &amp; techno">
+  <div class="product-copy">
+    <h3>Deep Tech Minimal Crate</h3>
+  </div>
+  <div class="price">£32.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="defected classics house &amp; techno">
+  <div class="product-copy">
+    <h3>DEFECTED CLASSICS</h3>
+  </div>
+  <div class="price">£28.30</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="french house essentials house &amp; techno">
+  <div class="product-copy">
+    <h3>French House Essentials</h3>
+  </div>
+  <div class="price">£35.90</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="hard techno playlist (2000 tracks) high energy... house &amp; techno">
+  <div class="product-copy">
+    <h3>Hard Techno Playlist (2000 Tracks) High Energy...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="house music collection house &amp; techno">
+  <div class="product-copy">
+    <h3>House Music Collection</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="ibiza classics 19902025 house &amp; techno">
+  <div class="product-copy">
+    <h3>Ibiza Classics 19902025</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="ibiza classics music collection 470 summer hou... house &amp; techno">
+  <div class="product-copy">
+    <h3>Ibiza Classics Music Collection 470 Summer Hou...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="jackin&#x27; house vol 02 house &amp; techno">
+  <div class="product-copy">
+    <h3>Jackin&#x27; House Vol 02</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="melodic techno 2025 house &amp; techno">
+  <div class="product-copy">
+    <h3>Melodic Techno 2025</h3>
+  </div>
+  <div class="price">£11.90</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="tech house collection 785 house &amp; techno">
+  <div class="product-copy">
+    <h3>Tech House Collection 785</h3>
+  </div>
+  <div class="price">£10.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="techno fiestas dj crate house &amp; techno">
+  <div class="product-copy">
+    <h3>Techno Fiestas DJ Crate</h3>
+  </div>
+  <div class="price">£16.80</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="the glitterbox collection house &amp; techno">
+  <div class="product-copy">
+    <h3>The Glitterbox Collection</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="the house vault summer 2026 house &amp; techno">
+  <div class="product-copy">
+    <h3>THE HOUSE VAULT SUMMER 2026</h3>
+  </div>
+  <div class="price">£99.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="trance" class="category">
+  <div class="section-head">
+    <h2>Trance</h2>
+    <span>4 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="1200 euphoric &amp; uplifting trance tracks melodi... trance">
+  <div class="product-copy">
+    <h3>1200 Euphoric &amp; Uplifting Trance Tracks Melodi...</h3>
+  </div>
+  <div class="price">£34.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="prog trance crate - 630 tracks trance">
+  <div class="product-copy">
+    <h3>Prog Trance Crate - 630 Tracks</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="progressive trance music collection 630+ track... trance">
+  <div class="product-copy">
+    <h3>Progressive Trance Music Collection 630+ Track...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="trance collection trance">
+  <div class="product-copy">
+    <h3>Trance Collection</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="hard-dance" class="category">
+  <div class="section-head">
+    <h2>Hard Dance</h2>
+    <span>4 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="1500 frenchcore tracks high bpm hardcore rave ... hard dance">
+  <div class="product-copy">
+    <h3>1500 Frenchcore Tracks High BPM Hardcore Rave ...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000 hard house playlist high energy dj crate ... hard dance">
+  <div class="product-copy">
+    <h3>2000 Hard House Playlist High Energy DJ Crate ...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2400 hardcore &amp; rave tracks oldschool high ene... hard dance">
+  <div class="product-copy">
+    <h3>2400 Hardcore &amp; Rave Tracks Oldschool High Ene...</h3>
+  </div>
+  <div class="price">£39.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="gabber hardcore music collection 3000+ tracks ... hard dance">
+  <div class="product-copy">
+    <h3>Gabber Hardcore Music Collection 3000+ Tracks ...</h3>
+  </div>
+  <div class="price">£44.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="edm-bass-dnb" class="category">
+  <div class="section-head">
+    <h2>EDM, Bass &amp; DnB</h2>
+    <span>9 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="1100 jungle &amp; drum and bass tracks classic to ... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>1100 Jungle &amp; Drum and Bass Tracks Classic to ...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="1100+ hard trap tracks high energy workout &amp; g... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>1100+ Hard Trap Tracks High Energy Workout &amp; G...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000 big room dance tracks festival style edm ... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>2000 Big Room Dance Tracks Festival Style EDM ...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000+ top 100 new releases house &amp; edm tracks (... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>2000+ Top 100 NEW Releases House &amp; EDM Tracks (...</h3>
+  </div>
+  <div class="price">£32.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2200+ drum &amp; bass tracks massive dnb playlist ... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>2200+ Drum &amp; Bass Tracks Massive DnB Playlist ...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="5700 edm tracks festival, big room &amp; bass hous... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>5700 EDM Tracks Festival, Big Room &amp; Bass Hous...</h3>
+  </div>
+  <div class="price">£95.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="630 jungle tracks breakbeat &amp; bass electronic ... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>630 Jungle Tracks Breakbeat &amp; Bass Electronic ...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="dub plates music collection 650 tracks edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>Dub Plates Music Collection 650 Tracks</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="tomorrowland 1100 edm tracks big room &amp; mains... edm, bass &amp; dnb">
+  <div class="product-copy">
+    <h3>Tomorrowland 1100 EDM Tracks Big Room &amp; Mains...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="hip-hop-r-b-reggae" class="category">
+  <div class="section-head">
+    <h2>Hip Hop, R&amp;B &amp; Reggae</h2>
+    <span>15 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="1600 dancehall tracks 2026 roots to modern bas... hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>1600 Dancehall Tracks 2026 Roots to Modern Bas...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2 tone &amp; ska crate hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>2 Tone &amp; Ska Crate</h3>
+  </div>
+  <div class="price">£14.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000 hip hop playlist old school to modern rap... hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>2000 Hip Hop Playlist Old School to Modern Rap...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2000 soul, funk and r&amp;b playlist feel-good gro... hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>2000 Soul, Funk and R&amp;B Playlist Feel-Good Gro...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="90s hip hop and r&amp;b big box hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>90s Hip Hop and R&amp;B Big Box</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="90s hip hop and r&amp;b crate hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>90s Hip Hop and R&amp;B Crate</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="950 roots reggae tracks classic &amp; deep reggae ... hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>950 Roots Reggae Tracks Classic &amp; Deep Reggae ...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="dancehall crate 2025 hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>Dancehall Crate 2025</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="hip hop 2025 hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>HIP HOP 2025</h3>
+  </div>
+  <div class="price">£18.10</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="hip hop collection 2000 plus tracks hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>Hip Hop Collection 2000 Plus Tracks</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="r&amp;b clubbing collection hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>R&amp;B Clubbing Collection</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="reggae crate 19602025 hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>Reggae Crate 19602025</h3>
+  </div>
+  <div class="price">£32.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="rnb 2025 hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>RNB 2025</h3>
+  </div>
+  <div class="price">£14.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="working dj: my hip hip crate hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>Working DJ: My Hip Hip Crate</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="working dj: my r&amp;b clubbing crate hip hop, r&amp;b &amp; reggae">
+  <div class="product-copy">
+    <h3>Working DJ: My R&amp;B Clubbing Crate</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="soul-funk-disco" class="category">
+  <div class="section-head">
+    <h2>Soul, Funk &amp; Disco</h2>
+    <span>8 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="1400 &#x27;modern&#x27; funk &amp; soul tracks groove music ... soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>1400 &#x27;Modern&#x27; Funk &amp; Soul Tracks Groove Music ...</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="700 70s funk &amp; soul tracks music collection fo... soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>700 70s Funk &amp; Soul Tracks Music Collection fo...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="70s club &amp; disco crate soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>70s Club &amp; Disco Crate</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="70s funk crate soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>70s Funk Crate</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="jazz funk 80s nightclub soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>Jazz Funk 80s Nightclub</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="motown &amp; soul pro dj playlist crate soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>Motown &amp; Soul Pro DJ Playlist Crate</h3>
+  </div>
+  <div class="price">£19.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="northern soul crate soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>Northern Soul Crate</h3>
+  </div>
+  <div class="price">£19.50</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="pride disco classics soul, funk &amp; disco">
+  <div class="product-copy">
+    <h3>Pride Disco Classics</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="decades-rock-club" class="category">
+  <div class="section-head">
+    <h2>Decades, Rock &amp; Club</h2>
+    <span>19 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="2000 old skool club classics &amp; house anthems decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>2000 Old Skool Club Classics &amp; House Anthems</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2100 indie &amp; alternative tracks ultimate indie... decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>2100 Indie &amp; Alternative Tracks Ultimate Indie...</h3>
+  </div>
+  <div class="price">£39.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="2500 90s tracks ultimate 90s music collection ... decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>2500 90s Tracks Ultimate 90s Music Collection ...</h3>
+  </div>
+  <div class="price">£39.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="680 alternative 80s tracks post-punk, new wave... decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>680 Alternative 80s Tracks Post-Punk, New Wave...</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="70s big box decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>70s Big Box</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="70s club music decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>70s Club Music</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="80s club dj crate decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>80s Club DJ Crate</h3>
+  </div>
+  <div class="price">£15.20</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="80s nightclub crate decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>80s Nightclub Crate</h3>
+  </div>
+  <div class="price">£15.20</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="90s club crate reissue decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>90s Club Crate Reissue</h3>
+  </div>
+  <div class="price">£11.80</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="alternative 80s decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Alternative 80s</h3>
+  </div>
+  <div class="price">£36.80</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="alternative 80s crate decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Alternative 80s Crate</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="bowler&#x27;s collection 900+ tracks decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Bowler&#x27;s Collection 900+ Tracks</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="glam rock crate decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Glam Rock Crate</h3>
+  </div>
+  <div class="price">£12.10</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="hacienda club classics top 100 decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Hacienda Club Classics Top 100</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="hacienda crate 280 tracks decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Hacienda Crate 280 Tracks</h3>
+  </div>
+  <div class="price">£28.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="rock &amp; roll decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Rock &amp; Roll</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="rock collection decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Rock Collection</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="sankey&#x27;s bangers decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Sankey&#x27;s Bangers</h3>
+  </div>
+  <div class="price">£28.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="top 100 yacht rock dj crate smooth rock, soft ... decades, rock &amp; club">
+  <div class="product-copy">
+    <h3>Top 100 Yacht Rock DJ Crate Smooth Rock, Soft ...</h3>
+  </div>
+  <div class="price">£12.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="party-occasion" class="category">
+  <div class="section-head">
+    <h2>Party &amp; Occasion</h2>
+    <span>25 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="15th birthday party music for girls 100+ pop &amp;... party &amp; occasion">
+  <div class="product-copy">
+    <h3>15th Birthday Party Music for Girls 100+ Pop &amp;...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="18th birthday party music collection 100+ trac... party &amp; occasion">
+  <div class="product-copy">
+    <h3>18th Birthday Party Music Collection 100+ Trac...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="21st birthday party music for girls 100+ track... party &amp; occasion">
+  <div class="product-copy">
+    <h3>21st Birthday Party Music for Girls 100+ Track...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="30th birthday party music 190 tracks party &amp; occasion">
+  <div class="product-copy">
+    <h3>30th Birthday Party Music 190 Tracks</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="40th birthday party music 100+ dancefloor hits... party &amp; occasion">
+  <div class="product-copy">
+    <h3>40th Birthday Party Music 100+ Dancefloor Hits...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="500 80s dance tracks retro party hits collecti... party &amp; occasion">
+  <div class="product-copy">
+    <h3>500 80s Dance Tracks Retro Party Hits Collecti...</h3>
+  </div>
+  <div class="price">£24.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="50th birthday party playlist 100+ feel-good da... party &amp; occasion">
+  <div class="product-copy">
+    <h3>50th Birthday Party Playlist 100+ Feel-Good Da...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="560 afrobeats tracks modern afro party &amp; club ... party &amp; occasion">
+  <div class="product-copy">
+    <h3>560 Afrobeats Tracks Modern Afro Party &amp; Club ...</h3>
+  </div>
+  <div class="price">£44.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="90s party music collection 2000+ tracks party &amp; occasion">
+  <div class="product-copy">
+    <h3>90s Party Music Collection 2000+ Tracks</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="christening party music 100+ clean &amp; family-fr... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Christening Party Music 100+ Clean &amp; Family-Fr...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="club party 2025 party &amp; occasion">
+  <div class="product-copy">
+    <h3>CLUB PARTY 2025</h3>
+  </div>
+  <div class="price">£19.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="engagement party dance music 100 feel good par... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Engagement Party Dance Music 100 Feel Good Par...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="frat party music 100 college party hits party &amp; occasion">
+  <div class="product-copy">
+    <h3>Frat Party Music 100 College Party Hits</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="garden party 107 summer music collection 100+ ... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Garden Party 107 Summer Music Collection 100+ ...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="girls night out party playlist 100+ feel good ... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Girls Night Out Party Playlist 100+ Feel Good ...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="hen party music 100 tracks party &amp; occasion">
+  <div class="product-copy">
+    <h3>Hen Party Music 100 Tracks</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="open format &amp; wedding dj blueprint party &amp; occasion">
+  <div class="product-copy">
+    <h3>Open Format &amp; Wedding DJ Blueprint</h3>
+  </div>
+  <div class="price">£197.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="party dj secrets party &amp; occasion">
+  <div class="product-copy">
+    <h3>Party DJ Secrets</h3>
+  </div>
+  <div class="price">FREE</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="pool party music collection 100+ tracks party &amp; occasion">
+  <div class="product-copy">
+    <h3>Pool Party Music Collection 100+ Tracks</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="prom night party songs 100+ high school dance ... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Prom Night Party Songs 100+ High School Dance ...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="rock party music collection 300+ classic &amp; mod... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Rock Party Music Collection 300+ Classic &amp; Mod...</h3>
+  </div>
+  <div class="price">£19.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="stag night tracks 100+ party anthems for a wil... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Stag Night Tracks 100+ Party Anthems for a Wil...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="summer bbq party music collection 100+ feel-go... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Summer BBQ Party Music Collection 100+ Feel-Go...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="sweet 16 party music pack 100+ pop, r&amp;b and da... party &amp; occasion">
+  <div class="product-copy">
+    <h3>Sweet 16 Party Music Pack 100+ Pop, R&amp;B and Da...</h3>
+  </div>
+  <div class="price">£9.99</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="top 500 wedding reception tracks party &amp; occasion">
+  <div class="product-copy">
+    <h3>Top 500 Wedding Reception Tracks</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="charts-current" class="category">
+  <div class="section-head">
+    <h2>Charts &amp; Current</h2>
+    <span>13 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="beatport best new melodic house &amp; techno jun... charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Best New Melodic House &amp; Techno Jun...</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="beatport best new minimal/deep tech jun 8 20... charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Best New Minimal/Deep Tech Jun 8 20...</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="beatport best new progressive house jun 8 20... charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Best New Progressive House Jun 8 20...</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="beatport best new tech house top 100 july charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Best New Tech House Top 100 July</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="beatport best new techno (raw/deep/hypnotic) charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Best New Techno (Raw/Deep/Hypnotic)</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="beatport best new techno peak time/driving j... charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Best New Techno Peak Time/Driving J...</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="beatport top 100 house june 10 2026 charts &amp; current">
+  <div class="product-copy">
+    <h3>Beatport Top 100 House June 10 2026</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="best of beatport 2025 charts &amp; current">
+  <div class="product-copy">
+    <h3>Best of Beatport 2025</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="club remixes 2025 charts &amp; current">
+  <div class="product-copy">
+    <h3>Club Remixes 2025</h3>
+  </div>
+  <div class="price">£32.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="the official singles chart top 100 jun 8 202... charts &amp; current">
+  <div class="product-copy">
+    <h3>The Official Singles Chart Top 100 Jun 8 202...</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="top 100 house apr 2026 charts &amp; current">
+  <div class="product-copy">
+    <h3>Top 100 House Apr 2026</h3>
+  </div>
+  <div class="price">£9.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="top 100 uk pop chart charts &amp; current">
+  <div class="product-copy">
+    <h3>Top 100 UK Pop Chart</h3>
+  </div>
+  <div class="price">£15.95</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="working dj top 100 2025 crowd-tested dj crate ... charts &amp; current">
+  <div class="product-copy">
+    <h3>Working DJ Top 100 2025 Crowd-Tested DJ Crate ...</h3>
+  </div>
+  <div class="price">£15.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="services-megacrates" class="category">
+  <div class="section-head">
+    <h2>Services &amp; Megacrates</h2>
+    <span>5 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="6000 tracks (up to) in one megacrate yours for... services &amp; megacrates">
+  <div class="product-copy">
+    <h3>6000 Tracks (Up to) in One Megacrate Yours for...</h3>
+  </div>
+  <div class="price">£89.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="dj crates on demand contact us for prices! services &amp; megacrates">
+  <div class="product-copy">
+    <h3>DJ Crates On Demand Contact us for prices!</h3>
+  </div>
+  <div class="price">£888.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="playlist to service services &amp; megacrates">
+  <div class="product-copy">
+    <h3>Playlist to Service</h3>
+  </div>
+  <div class="price">£29.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="spotify music crate conversion services &amp; megacrates">
+  <div class="product-copy">
+    <h3>Spotify Music Crate Conversion</h3>
+  </div>
+  <div class="price">£49.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article><article class="product" data-search="working dj: my house crate services &amp; megacrates">
+  <div class="product-copy">
+    <h3>Working DJ: My House Crate</h3>
+  </div>
+  <div class="price">£37.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="free-resources" class="category">
+  <div class="section-head">
+    <h2>Free Resources</h2>
+    <span>1 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="free dj mixing guide go from zero to hero &amp; le... free resources">
+  <div class="product-copy">
+    <h3>FREE DJ MIXING GUIDE GO FROM ZERO TO HERO &amp; LE...</h3>
+  </div>
+  <div class="price">FREE</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section><section id="other-collections" class="category">
+  <div class="section-head">
+    <h2>Other Collections</h2>
+    <span>1 items</span>
+  </div>
+  <div class="product-list">
+    <article class="product" data-search="beatport any 500 tracks other collections">
+  <div class="product-copy">
+    <h3>Beatport Any 500 Tracks</h3>
+  </div>
+  <div class="price">£49.00</div>
+  <a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">BUY NOW</a>
+</article>
+  </div>
+</section>
+  <p id="empty" class="empty">No collections match that search.</p>
 </main>
-
-<footer>
-  <div class="wrap">© DJ Crates</div>
-</footer>
+<footer><div class="wrap">© DJ Crates · <a href="mailto:diane@djcrates.store">Contact</a></div></footer>
+<script>
+const search=document.getElementById('search');
+const cards=[...document.querySelectorAll('.product')];
+const categories=[...document.querySelectorAll('.category')];
+const empty=document.getElementById('empty');
+search.addEventListener('input',()=>{
+ const q=search.value.trim().toLowerCase();
+ let shown=0;
+ cards.forEach(card=>{
+   const match=!q||card.dataset.search.includes(q);
+   card.classList.toggle('hidden',!match);
+   if(match) shown++;
+ });
+ categories.forEach(section=>{
+   const any=[...section.querySelectorAll('.product')].some(card=>!card.classList.contains('hidden'));
+   section.style.display=any?'block':'none';
+ });
+ empty.style.display=shown?'none':'block';
+});
+</script>
 </body>
 </html>

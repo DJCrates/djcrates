@@ -1,474 +1,271 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Discover and download organised music collections for DJs, parties and music lovers.">
-<title>DJ Crates | Discover & Download</title>
-<style>
-:root {
-  --black:#050505;
-  --panel:#111;
-  --white:#f6f6f2;
-  --muted:#aaa;
-  --green:#91ed00;
-  --line:rgba(255,255,255,.13);
-  --max:1240px;
-}
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  margin:0;
-  background:var(--black);
-  color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-  line-height:1.5;
-}
-img { display:block; max-width:100%; }
-a { color:inherit; }
-.wrap { width:min(calc(100% - 40px),var(--max)); margin:auto; }
-.site-header {
-  position:sticky; top:0; z-index:50;
-  background:rgba(5,5,5,.91);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--line);
-}
-.nav {
-  min-height:78px; display:flex; align-items:center;
-  justify-content:space-between; gap:28px;
-}
-.logo img { width:150px; height:58px; object-fit:contain; object-position:left center; }
-.nav-links { display:flex; gap:26px; align-items:center; }
-.nav-links a { text-decoration:none; font-size:.9rem; font-weight:800; }
-.nav-links a:hover { color:var(--green); }
-.menu-button { display:none; border:1px solid var(--line); background:none; color:#fff; padding:10px 14px; font-weight:800; }
-.hero {
-  border-bottom:1px solid var(--line);
-  background:radial-gradient(circle at 82% 28%,rgba(145,237,0,.13),transparent 27%);
-}
-.hero-grid {
-  min-height:650px; padding:76px 0;
-  display:grid; grid-template-columns:1.04fr .96fr;
-  align-items:center; gap:70px;
-}
-.kicker, .section-label {
-  margin:0 0 14px; color:var(--green);
-  font-size:.75rem; font-weight:900; letter-spacing:.21em;
-  text-transform:uppercase;
-}
-h1,h2,h3,p { margin-top:0; }
-h1 {
-  margin-bottom:24px;
-  font-size:clamp(4rem,8vw,8rem);
-  line-height:.84; letter-spacing:-.07em;
-}
-.lead { max-width:620px; color:#ccc; font-size:1.18rem; }
-.hero-buttons { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
-.button {
-  min-height:52px; display:inline-flex; align-items:center; justify-content:center;
-  padding:0 24px; text-decoration:none; font-weight:900;
-  border:1px solid var(--line);
-}
-.button-primary { background:var(--green); border-color:var(--green); color:#000; }
-.button-secondary:hover { border-color:#fff; }
-.hero-covers { position:relative; min-height:500px; }
-.hero-covers img {
-  position:absolute; width:min(63%,375px); aspect-ratio:1; object-fit:cover;
-  border:1px solid rgba(255,255,255,.22);
-  box-shadow:0 28px 72px rgba(0,0,0,.56);
-}
-.hero-covers img:nth-child(1) { right:24%; top:0; transform:rotate(-7deg); }
-.hero-covers img:nth-child(2) { right:0; top:20%; transform:rotate(5deg); }
-.hero-covers img:nth-child(3) { left:0; bottom:0; transform:rotate(-2deg); }
-.quick-nav {
-  border-bottom:1px solid var(--line);
-  background:#0a0a0a;
-}
-.quick-grid {
-  display:grid; grid-template-columns:repeat(5,1fr);
-}
-.quick-grid a {
-  min-height:105px; padding:22px;
-  border-right:1px solid var(--line);
-  text-decoration:none; display:flex; align-items:flex-end;
-  font-weight:900; font-size:1.1rem;
-}
-.quick-grid a:first-child { border-left:1px solid var(--line); }
-.quick-grid a:hover { background:var(--green); color:#000; }
-.catalogue-section {
-  width:min(calc(100% - 40px),var(--max));
-  margin:auto; padding:95px 0;
-  border-bottom:1px solid var(--line);
-}
-.section-heading {
-  display:flex; justify-content:space-between; align-items:end;
-  gap:30px; margin-bottom:38px;
-}
-.section-heading h2 {
-  margin:0; font-size:clamp(2.4rem,5vw,4.8rem);
-  line-height:.95; letter-spacing:-.05em;
-}
-.back-top { text-decoration:none; color:var(--muted); font-weight:800; font-size:.86rem; }
-.product-grid {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:42px 24px;
-}
-.cover-link { display:block; overflow:hidden; background:#111; }
-.cover-link img {
-  width:100%; aspect-ratio:1; object-fit:cover;
-  transition:transform .25s ease, opacity .25s ease;
-}
-.cover-link:hover img { transform:scale(1.025); opacity:.9; }
-.product-info { padding-top:16px; }
-.genre {
-  margin-bottom:5px; color:var(--green);
-  font-size:.7rem; font-weight:900; letter-spacing:.14em;
-  text-transform:uppercase;
-}
-.product-info h3 { margin-bottom:3px; font-size:1.25rem; }
-.tracks { margin-bottom:11px; color:var(--muted); font-size:.92rem; }
-.view-link { text-decoration:none; font-weight:900; font-size:.92rem; }
-.view-link:hover { color:var(--green); }
-.party {
-  padding:96px 0; border-bottom:1px solid var(--line);
-}
-.party-box {
-  background:var(--green); color:#000;
-  padding:clamp(38px,6vw,78px);
-  display:grid; grid-template-columns:1.1fr .9fr;
-  gap:60px; align-items:center;
-}
-.party-box h2 {
-  margin-bottom:18px; font-size:clamp(2.6rem,5vw,5rem);
-  line-height:.92; letter-spacing:-.05em;
-}
-.party-box .section-label { color:#000; }
-.party-links { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.party-links span { padding:17px; background:#000; color:#fff; font-weight:900; }
-footer { padding:35px 0; }
-.footer {
-  display:flex; justify-content:space-between; align-items:center;
-  gap:24px; color:var(--muted); font-size:.86rem;
-}
-.footer img { width:105px; height:48px; object-fit:contain; object-position:left; }
-.footer p { margin:0; }
-.footer a { text-decoration:none; }
-.footer a:hover { color:var(--green); }
-@media(max-width:900px) {
-  .hero-grid { grid-template-columns:1fr; min-height:auto; }
-  .hero-covers { min-height:430px; }
-  .product-grid { grid-template-columns:repeat(2,1fr); }
-  .quick-grid { grid-template-columns:repeat(3,1fr); }
-  .party-box { grid-template-columns:1fr; }
-}
-@media(max-width:700px) {
-  .wrap,.catalogue-section { width:min(calc(100% - 28px),var(--max)); }
-  .menu-button { display:block; }
-  .nav-links {
-    display:none; position:absolute; left:0; right:0; top:78px;
-    flex-direction:column; align-items:flex-start;
-    padding:24px; background:#080808; border-bottom:1px solid var(--line);
-  }
-  .nav-links.open { display:flex; }
-  .hero-grid { padding:54px 0; gap:36px; }
-  h1 { font-size:4.3rem; }
-  .hero-covers { min-height:335px; }
-  .quick-grid { grid-template-columns:1fr 1fr; }
-  .section-heading { display:block; }
-  .back-top { display:inline-block; margin-top:14px; }
-  .product-grid { grid-template-columns:1fr 1fr; gap:30px 14px; }
-  .party-links { grid-template-columns:1fr; }
-  .footer { align-items:flex-start; flex-direction:column; }
-}
-@media(max-width:440px) {
-  .product-info h3 { font-size:1rem; }
-  .hero-buttons .button { width:100%; }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DJ Crates | Browse & Buy</title>
+  <meta name="description" content="Browse downloadable DJ music collections and buy securely through Payhip.">
+  <style>
+    :root{
+      --bg:#070707;
+      --panel:#111;
+      --text:#f5f5f2;
+      --muted:#aaa;
+      --green:#93ed00;
+      --line:#2a2a2a;
+      --max:980px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:Arial,Helvetica,sans-serif;
+      line-height:1.5;
+    }
+    .wrap{
+      width:min(calc(100% - 28px),var(--max));
+      margin:auto;
+    }
+    header{
+      border-bottom:1px solid var(--line);
+      padding:34px 0 28px;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(2.6rem,7vw,5.2rem);
+      line-height:.9;
+      letter-spacing:-.055em;
+    }
+    .strap{
+      margin:18px 0 0;
+      max-width:650px;
+      color:#c7c7c7;
+      font-size:1.08rem;
+    }
+    .notice{
+      margin-top:24px;
+      padding:15px 18px;
+      background:var(--panel);
+      border-left:4px solid var(--green);
+      color:#d7d7d7;
+    }
+    nav{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(7,7,7,.95);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      gap:16px;
+      overflow-x:auto;
+      padding:13px 0;
+      white-space:nowrap;
+    }
+    .nav a{
+      color:var(--text);
+      text-decoration:none;
+      font-weight:800;
+      font-size:.9rem;
+    }
+    .nav a:hover{color:var(--green)}
+    section{
+      padding:48px 0;
+      border-bottom:1px solid var(--line);
+    }
+    h2{
+      margin:0 0 20px;
+      font-size:clamp(2rem,5vw,3.4rem);
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+    .list{
+      border-top:1px solid var(--line);
+    }
+    .item{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:18px;
+      align-items:center;
+      padding:17px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .item h3{
+      margin:0 0 3px;
+      font-size:1.05rem;
+    }
+    .item p{
+      margin:0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .buy{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:108px;
+      min-height:42px;
+      padding:0 16px;
+      background:var(--green);
+      color:#000;
+      text-decoration:none;
+      font-weight:900;
+    }
+    .buy:hover{filter:brightness(1.08)}
+    .contact{
+      background:var(--panel);
+    }
+    .contact-box{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:22px;
+      align-items:center;
+    }
+    .contact p{
+      margin:8px 0 0;
+      color:#c7c7c7;
+    }
+    footer{
+      padding:30px 0 44px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    @media(max-width:620px){
+      .item{
+        grid-template-columns:1fr;
+      }
+      .buy{
+        width:100%;
+      }
+      .contact-box{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="wrap nav">
-    <a class="logo" href="#top"><img src="assets/logo.png" alt="DJ Crates"></a>
-    <button class="menu-button" type="button" aria-expanded="false">Menu</button>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#house">House</a>
-      <a href="#techno">Techno</a>
-      <a href="#trance">Trance</a>
-      <a href="#hardcore">Hardcore</a>
-      <a href="#party">Party Music</a>
-      <a href="mailto:diane@djcrates.store">Contact</a>
-    </nav>
+<header>
+  <div class="wrap">
+    <h1>DJ CRATES</h1>
+    <p class="strap">Browse downloadable music collections and buy securely through Payhip.</p>
+    <div class="notice">Built from working DJs' music libraries. Artist &amp; title tagged. Versions vary.</div>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="kicker">DJ CRATES</p>
-        <h1>Discover &amp;<br>Download</h1>
-        <p class="lead">Organised music collections for DJs, parties and music lovers. Choose a sound, view the collection and buy securely through Payhip.</p>
-        <div class="hero-buttons">
-          <a class="button button-primary" href="#house">Browse collections</a>
-          <a class="button button-secondary" href="#party">Party music</a>
-        </div>
-      </div>
-      <div class="hero-covers" aria-label="Featured collections">
-        <img src="assets/covers/happy-house.png" alt="Happy House">
-        <img src="assets/covers/peak-time-techno.png" alt="Peak Time Techno">
-        <img src="assets/covers/progressive-trance.png" alt="Progressive Trance">
+<nav>
+  <div class="wrap nav">
+    <a href="#house">House</a>
+    <a href="#techno">Techno</a>
+    <a href="#trance">Trance</a>
+    <a href="#hardcore">Hardcore</a>
+    <a href="#dance">Dance &amp; Club</a>
+    <a href="#urban">Hip Hop &amp; R&amp;B</a>
+    <a href="#party">Party Music</a>
+  </div>
+</nav>
+
+<main>
+  <section id="house">
+    <div class="wrap">
+      <h2>House</h2>
+      <div class="list">
+        <div class="item"><div><h3>House Music Classics</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Happy House</h3><p>1,800 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Deep House</h3><p>1,800+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Jackin' House Vol. 1</h3><p>Download collection</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Jackin' House Vol. 2</h3><p>Download collection</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Melodic House</h3><p>1,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Progressive House</h3><p>750 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Tropical House</h3><p>1,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>R&amp;B House</h3><p>1,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
       </div>
     </div>
   </section>
 
-  <section class="quick-nav">
-    <div class="wrap quick-grid">
-      <a href="#house">House</a>
-      <a href="#techno">Techno</a>
-      <a href="#trance">Trance</a>
-      <a href="#hardcore">Hardcore</a>
-      <a href="#hip-hop">Hip Hop</a>
+  <section id="techno">
+    <div class="wrap">
+      <h2>Techno</h2>
+      <div class="list">
+        <div class="item"><div><h3>Peak Time Techno</h3><p>1,200 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Melodic Techno</h3><p>1,800+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Acid Techno</h3><p>1,500+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Hard Techno</h3><p>2,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+      </div>
     </div>
   </section>
 
-  
-    <section class="catalogue-section" id="house">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">House</p>
-          <h2>House collections</h2>
-        </div>
-        <a href="#top" class="back-top">Back to top ↑</a>
+  <section id="trance">
+    <div class="wrap">
+      <h2>Trance</h2>
+      <div class="list">
+        <div class="item"><div><h3>Trance</h3><p>1,200 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Progressive Trance</h3><p>630+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
       </div>
-      <div class="product-grid">
-        
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Happy House">
-          <img src="assets/covers/happy-house.png" alt="Happy House cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">House</p>
-          <h3>Happy House</h3>
-          <p class="tracks">1,800 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
+    </div>
+  </section>
 
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Melodic House">
-          <img src="assets/covers/melodic-house.png" alt="Melodic House cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">House</p>
-          <h3>Melodic House</h3>
-          <p class="tracks">1,000 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
+  <section id="hardcore">
+    <div class="wrap">
+      <h2>Hardcore</h2>
+      <div class="list">
+        <div class="item"><div><h3>Hardcore &amp; Rave</h3><p>2,400 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Gabber / Hardcore</h3><p>3,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Frenchcore</h3><p>1,500 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Hard House</h3><p>2,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+      </div>
+    </div>
+  </section>
 
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Progressive House">
-          <img src="assets/covers/progressive-house.png" alt="Progressive House cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">House</p>
-          <h3>Progressive House</h3>
-          <p class="tracks">750 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
+  <section id="dance">
+    <div class="wrap">
+      <h2>Dance &amp; Club</h2>
+      <div class="list">
+        <div class="item"><div><h3>90s Club Classics</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>80s Dance</h3><p>500 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Drum &amp; Bass</h3><p>2,200 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>Jungle</h3><p>630 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+      </div>
+    </div>
+  </section>
 
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Tropical House">
-          <img src="assets/covers/tropical-house.png" alt="Tropical House cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">House</p>
-          <h3>Tropical House</h3>
-          <p class="tracks">1,000 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
+  <section id="urban">
+    <div class="wrap">
+      <h2>Hip Hop &amp; R&amp;B</h2>
+      <div class="list">
+        <div class="item"><div><h3>Hip Hop DJ Crate</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>R&amp;B DJ Crate</h3><p>2,000 tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+      </div>
+    </div>
+  </section>
 
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View R&amp;B House">
-          <img src="assets/covers/rb-house.png" alt="R&amp;B House cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">House</p>
-          <h3>R&amp;B House</h3>
-          <p class="tracks">1,000 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
+  <section id="party">
+    <div class="wrap">
+      <h2>Party Music</h2>
+      <div class="list">
+        <div class="item"><div><h3>Open Format / Wedding</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>90s Party</h3><p>2,000+ tracks</p></div><a class="buy" href="https://djcrates.store" target="_blank" rel="noopener">View / Buy</a></div>
+        <div class="item"><div><h3>40th Birthday Party</h3><p>Coming soon</p></div><a class="buy" href="mailto:diane@djcrates.store?subject=40th%20Birthday%20Party%20Music">Enquire</a></div>
+        <div class="item"><div><h3>Wedding Floorfillers</h3><p>Coming soon</p></div><a class="buy" href="mailto:diane@djcrates.store?subject=Wedding%20Floorfillers">Enquire</a></div>
       </div>
-    </section>
-    <section class="catalogue-section" id="techno">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Techno</p>
-          <h2>Techno collections</h2>
-        </div>
-        <a href="#top" class="back-top">Back to top ↑</a>
-      </div>
-      <div class="product-grid">
-        
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Peak Time Techno">
-          <img src="assets/covers/peak-time-techno.png" alt="Peak Time Techno cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Techno</p>
-          <h3>Peak Time Techno</h3>
-          <p class="tracks">1,200 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
+    </div>
+  </section>
 
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Acid Techno">
-          <img src="assets/covers/acid-techno.png" alt="Acid Techno cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Techno</p>
-          <h3>Acid Techno</h3>
-          <p class="tracks">1,500+ tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Melodic Techno">
-          <img src="assets/covers/melodic-techno.jpg" alt="Melodic Techno cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Techno</p>
-          <h3>Melodic Techno</h3>
-          <p class="tracks">1,800+ tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
-      </div>
-    </section>
-    <section class="catalogue-section" id="trance">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Trance</p>
-          <h2>Trance collections</h2>
-        </div>
-        <a href="#top" class="back-top">Back to top ↑</a>
-      </div>
-      <div class="product-grid">
-        
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Progressive Trance">
-          <img src="assets/covers/progressive-trance.png" alt="Progressive Trance cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Trance</p>
-          <h3>Progressive Trance</h3>
-          <p class="tracks">630+ tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
-      </div>
-    </section>
-    <section class="catalogue-section" id="hardcore">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Hardcore</p>
-          <h2>Hardcore collections</h2>
-        </div>
-        <a href="#top" class="back-top">Back to top ↑</a>
-      </div>
-      <div class="product-grid">
-        
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Hardcore &amp; Rave">
-          <img src="assets/covers/hardcore-rave.png" alt="Hardcore &amp; Rave cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Hardcore</p>
-          <h3>Hardcore &amp; Rave</h3>
-          <p class="tracks">2,400 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
-
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Gabber / Hardcore">
-          <img src="assets/covers/gabber-hardcore.png" alt="Gabber / Hardcore cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Hardcore</p>
-          <h3>Gabber / Hardcore</h3>
-          <p class="tracks">3,000 tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
-      </div>
-    </section>
-    <section class="catalogue-section" id="hip-hop">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">Hip Hop</p>
-          <h2>Hip Hop collections</h2>
-        </div>
-        <a href="#top" class="back-top">Back to top ↑</a>
-      </div>
-      <div class="product-grid">
-        
-      <article class="product-card">
-        <a class="cover-link" href="#" aria-label="View Hip Hop DJ Crate">
-          <img src="assets/covers/hip-hop.png" alt="Hip Hop DJ Crate cover" loading="lazy">
-        </a>
-        <div class="product-info">
-          <p class="genre">Hip Hop</p>
-          <h3>Hip Hop DJ Crate</h3>
-          <p class="tracks">2,000+ tracks</p>
-          <a class="view-link" href="#">View collection <span>→</span></a>
-        </div>
-      </article>
-      </div>
-    </section>
-
-  <section class="party" id="party">
-    <div class="wrap party-box">
+  <section class="contact">
+    <div class="wrap contact-box">
       <div>
-        <p class="section-label">PARTY MUSIC</p>
-        <h2>Music for the occasion</h2>
-        <p>Birthday parties, weddings and celebrations. This public area can grow as each collection is ready.</p>
+        <h2>Need something specific?</h2>
+        <p>Ask about custom collections, downloads or a possible USB service.</p>
       </div>
-      <div class="party-links">
-        <span>40th Birthdays</span>
-        <span>50th Birthdays</span>
-        <span>Weddings</span>
-        <span>Party Floorfillers</span>
-      </div>
+      <a class="buy" href="mailto:diane@djcrates.store?subject=DJ%20Crates%20Enquiry">Contact</a>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap footer">
-    <img src="assets/logo.png" alt="DJ Crates">
-    <p>Built from working DJs' music libraries.</p>
-    <a href="mailto:diane@djcrates.store">Contact</a>
-  </div>
+  <div class="wrap">© DJ Crates</div>
 </footer>
-
-<script>
-const button=document.querySelector('.menu-button');
-const links=document.querySelector('.nav-links');
-button.addEventListener('click',()=>{
-  const open=button.getAttribute('aria-expanded')==='true';
-  button.setAttribute('aria-expanded',String(!open));
-  links.classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
-  links.classList.remove('open');
-  button.setAttribute('aria-expanded','false');
-}));
-</script>
 </body>
 </html>
